@@ -1,8 +1,8 @@
 The Ares Discord app is an extension for AresMUSH that lets you connect your in-game chat channels to a  [Discord](https://discordapp.com/) server.
 
-<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/game.png?raw=true" width="250" alt="Game Chat" />
+<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/game.png?raw=true" width="400" alt="Game Chat" />
 
-<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/discord.png?raw=true" width="250" alt="Discord Chat" />
+<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/discord.png?raw=true" width="400" alt="Discord Chat" />
 
 
 Setting it up is a pain, requiring multiple steps.  Fortunately the setup only needs to be done once.
