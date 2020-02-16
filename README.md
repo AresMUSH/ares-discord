@@ -1,13 +1,18 @@
 The Ares Discord app is an extension for AresMUSH that lets you connect your in-game chat channels to a  [Discord](https://discordapp.com/) server.
 
-<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/game.png?raw=true" width="250" alt="Game Chat" />
+<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/game.png?raw=true" width="400" alt="Game Chat" />
 
-<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/discord.png?raw=true" width="250" alt="Discord Chat" />
+<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/discord.png?raw=true" width="400" alt="Discord Chat" />
 
+Chat from the game will be sent to the Discord server using a Discord Bot.  Though it will show up with the character's name (and icon, if set), you'll see `[Bot]` next to their name to show that it's not a regular Discord user. Also, because they're not a regular Discord user, you can't PM or @mention them.
 
-Setting it up is a pain, requiring multiple steps.  Fortunately the setup only needs to be done once.
+In the game, chat from Discord is indicated by a prefix (`[D]` by default).
 
-## Create a Discord App
+## Setup
+
+Setting up the Discord app is a pain, requiring multiple steps.  Fortunately the setup only needs to be done once.
+
+### Create a Discord App
 
 First you need to create an "application" in discord that will enable your bot.
 
@@ -24,7 +29,7 @@ First you need to create an "application" in discord that will enable your bot.
 
 > **NOTE:** Never give your bot token to anyone, as it will allow them to control your bot in potentially malicious ways.
 
-## Add the Bot User
+### Add the Bot User
 
 Next you need to add the Bot you just defined to your game's Discord server.  This will create a bot 'user' in your game's Discord.
 
@@ -35,7 +40,7 @@ Next you need to add the Bot you just defined to your game's Discord server.  Th
 
 > **NOTE:** You'll need administrator permissions on the discord server to authorize a bot.
 
-## Install the Bot App
+### Install the Bot App
 
 Now you can install the code that makes the bot run.  This is a tiny app that runs alongside the MUSH on your game server.
 
@@ -59,7 +64,7 @@ Here are the config options:
 
 > **Note:** Make sure your config options are in quotes.
 
-## Start the Bot App
+### Start the Bot App
 
 Once the bot code is installed, you need to start it up.
 
@@ -73,7 +78,7 @@ node bot.js&
 
 You only need to do this the first time.  The installer sets it up so it'll start automatically when the server restarts.
 
-## Add the Web Hooks
+### Add the Web Hooks
 
 You'll need to set up a web hook in your Discord server for **each** MUSH channel you want to hook up to discord.
 
@@ -86,7 +91,7 @@ You'll need to set up a web hook in your Discord server for **each** MUSH channe
 <img src="https://github.com/AresMUSH/ares-discord/blob/master/images/webhook.png?raw=true" width="500" alt="Discord Chat" />
 
 
-## Edit the Game Config
+### Edit the Game Config
 
 Finally you can update your game's configuration with the discord info.
 
@@ -97,8 +102,8 @@ Finally you can update your game's configuration with the discord info.
 
 Here are the config options:
 
-* **api_token**: This must match the `api_token` option that you put in the config.json file when installing the bot.
-* **webhooks**: A list of web hooks.  For each hook, you must list the name of the MUSH channel, the name of the corresponding Discord channel, and the webhook URL from the previous step.  Remember that each channel needs a different webhook URL.
+* **`api_token`**: This must match the `api_token` option that you put in the config.json file when installing the bot.
+* **`webhooks`**: A list of web hooks.  For each hook, you must list the name of the MUSH channel, the name of the corresponding Discord channel, and the webhook URL from the previous step.  Remember that each channel needs a different webhook URL.
 
 Here's an example:
 
@@ -115,7 +120,13 @@ Here's an example:
         webhook_url: 'https://discordapp.com/api/webhooks/WEBHOOK2'
 
 ```
+### Additional Config Options
 
-## Adding or Changing Channels
+In `channels.yml` you can set up two additional config options:
+
+* **`discord_prefix`** - This is the prefix that shows up on the in-game chat to indicate that the message came from Discord.
+* **`discord_gravatar_style`** - If the player doesn't have an icon, the game will use a randomly-assigned one from Gravatar.  Gravatar supports [various styles](https://en.gravatar.com/site/implement/images/) such as 'robohash' (robots), 'retro' (blocky video game things),  'identicon' (geometric patterns) and more.
+
+### Adding or Changing Channels
 
 If you ever want to add extra channels or change how your channels are connected, you can add, edit or delete the webhooks in your Discord server settings.  Then just edit the MUSH configuration to match.
