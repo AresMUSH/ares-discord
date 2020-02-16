@@ -1,19 +1,20 @@
 var Discord = require('discord.js');
-var logger = require('winston');
+var winston = require('winston');
 var config = require('./config.json');
 var axios = require('axios')
 
 // Configure logger settings
-logger.remove(logger.transports.Console);
-logger.add(new logger.transports.Console, {
-    colorize: true
+
+const logger = winston.createLogger({
+  level: 'debug',
+  format: winston.format.json(),
+  defaultMeta: { service: 'user-service' },
+  transports: [
+    new winston.transports.File({ filename: 'bot.log', level: 'info', maxsize: '10000' }),
+    new winston.transports.Console( { colorize: true })
+  ]
 });
-logger.add(new logger.transports.File, {
-  filename: 'error.log',
-  maxsize: '10000',
-  level: 'error'
-});
-logger.level = 'debug';
+
 // Initialize Discord Bot
 var bot = new Discord.Client();
 
