@@ -73,7 +73,7 @@ Once the bot code is installed, you need to start it up.
 
 ```
 cd ares-discord
-node bot.js&
+nohup node bot.js&
 ```
 
 You only need to do this the first time.  The installer sets it up so it'll start automatically when the server restarts.
