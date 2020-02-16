@@ -1,0 +1,12 @@
+{
+  "name": "ares-link",
+  "version": "1.0.0",
+  "description": "Ares to Discord link.",
+  "main": "bot.js",
+  "author": "Faraday@AresMUSH",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "discord.js": "^11.5.1",
+    "winston": "^3.2.1"
+  }
+}
