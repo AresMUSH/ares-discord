@@ -8,6 +8,11 @@ logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
     colorize: true
 });
+logger.add(new logger.transports.File, {
+  filename: 'error.log',
+  maxsize: '10000',
+  level: 'error'
+});
 logger.level = 'debug';
 // Initialize Discord Bot
 var bot = new Discord.Client();
