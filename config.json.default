@@ -1,5 +1,5 @@
 {
-  "url": "https://YOUR_WEB_PORTAL:YOUR_ENGINE_API_PORT",
+  "url": "https://YOUR_WEB_PORTAL/api",
   "bot_token": "DISCORD_BOT_TOKEN",
   "api_token": "MUSH_API_TOKEN"
 }

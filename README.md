@@ -58,7 +58,7 @@ chmod +x install.sh
 
 Here are the config options:
 
-* **url**: This is the URL for the engine API port.  Typically it would be `https://yourmush.com:4203`.  Note that the port (4203) is your engine API port from server.yml, not the port you usually connect to from a MUSH client.
+* **url**: This is your game's API endpoint.  For typical installs with https enabled it would be `https://YOUR_WEB_PORTAL/api`.
 * **bot_token**: This is the bot token that you got from "Click to Reveal Token" when you created the bot.
 * **api_token**: Make up a long password for your game.  This prevents random people from adding junk to your channels. The website [Guid Generator](https://www.guidgenerator.com/) is good for making up a password.
 
