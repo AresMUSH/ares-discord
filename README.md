@@ -1,8 +1,8 @@
 The Ares Discord app is an extension for AresMUSH that lets you connect your in-game chat channels to a  [Discord](https://discordapp.com/) server.
 
-![Game Chat](images/game.png =250x)
+<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/game.png?raw=true" width="250" alt="Game Chat" />
 
-![Discord Chat](images/game.png =250x)
+<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/discord.png?raw=true" width="250" alt="Discord Chat" />
 
 
 Setting it up is a pain, requiring multiple steps.  Fortunately the setup only needs to be done once.
@@ -31,7 +31,7 @@ Next you need to add the Bot you just defined to your game's Discord server.  Th
 1. Substitute your client ID (that you got in step 10 above) into this URL and go there in your browser: https://discordapp.com/oauth2/authorize?&client_id=YOUR_CLIENT_ID_HERE&scope=bot&permissions=2048
 2. You'll see a prompt asking you to connect your bot.  Select your game's discord server and click Authorize.
 
-![Add Bot](images/addbot.png =400x)
+<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/addbot.png?raw=true" width="500" alt="Discord Chat" />
 
 > **NOTE:** You'll need administrator permissions on the discord server to authorize a bot.
 
@@ -83,7 +83,7 @@ You'll need to set up a web hook in your Discord server for **each** MUSH channe
 4. Give the hook a name (like "Ares Link"), and select the channel you want to hook it up to.
 5. Copy the "Webhook URL".  You'll need this in the next step.
 
-![Add Bot](images/webhook.png =400x)
+<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/webhook.png?raw=true" width="500" alt="Discord Chat" />
 
 
 ## Edit the Game Config
