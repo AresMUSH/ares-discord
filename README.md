@@ -1,4 +1,15 @@
+The Ares Discord app is an extension for AresMUSH that lets you connect your in-game chat channels to a  [Discord](https://discordapp.com/) server.
+
+![Game Chat](images/game.png =250x)
+
+![Discord Chat](images/game.png =250x)
+
+
+Setting it up is a pain, requiring multiple steps.  Fortunately the setup only needs to be done once.
+
 ## Create a Discord App
+
+First you need to create an "application" in discord that will enable your bot.
 
 1. Go to [Discord Developer Portal](https://discordapp.com/developers/applications) and log in with your Discord account.
 2. Click "New Application".
@@ -13,19 +24,20 @@
 
 > **NOTE:** Never give your bot token to anyone, as it will allow them to control your bot in potentially malicious ways.
 
-## Add the Bot User To Your Server
+## Add the Bot User
 
-Substitute your client ID (that you got in step 10 above) into this URL and go there in your browser:
+Next you need to add the Bot you just defined to your game's Discord server.  This will create a bot 'user' in your game's Discord.
 
-https://discordapp.com/oauth2/authorize?&client_id=YOUR_CLIENT_ID_HERE&scope=bot&permissions=2048
+1. Substitute your client ID (that you got in step 10 above) into this URL and go there in your browser: https://discordapp.com/oauth2/authorize?&client_id=YOUR_CLIENT_ID_HERE&scope=bot&permissions=2048
+2. You'll see a prompt asking you to connect your bot.  Select your game's discord server and click Authorize.
 
-You'll see a prompt asking you to connect your bot.  Select your game's discord server and click Authorize.
-
-![Add Bot](images/addbot.png)
+![Add Bot](images/addbot.png =400x)
 
 > **NOTE:** You'll need administrator permissions on the discord server to authorize a bot.
 
-## Install the Bot
+## Install the Bot App
+
+Now you can install the code that makes the bot run.  This is a tiny app that runs alongside the MUSH on your game server.
 
 1. Log into your game's server shell.
 2. Clone this repository using `git clone https://github.com/AresMUSH/ares-discord.git`.
@@ -47,7 +59,9 @@ Here are the config options:
 
 > **Note:** Make sure your config options are in quotes.
 
-## Start the Bot
+## Start the Bot App
+
+Once the bot code is installed, you need to start it up.
 
 1. Log into your game's server shell.
 2. Start the bot:
@@ -69,10 +83,12 @@ You'll need to set up a web hook in your Discord server for **each** MUSH channe
 4. Give the hook a name (like "Ares Link"), and select the channel you want to hook it up to.
 5. Copy the "Webhook URL".  You'll need this in the next step.
 
-![Add Bot](images/webhook.png)
+![Add Bot](images/webhook.png =400x)
 
 
 ## Edit the Game Config
+
+Finally you can update your game's configuration with the discord info.
 
 1. Log into your web portal with an admin character.
 2. Go to Admin -> Setup.
@@ -99,3 +115,7 @@ Here's an example:
         webhook_url: 'https://discordapp.com/api/webhooks/WEBHOOK2'
 
 ```
+
+## Adding or Changing Channels
+
+If you ever want to add extra channels or change how your channels are connected, you can add, edit or delete the webhooks in your Discord server settings.  Then just edit the MUSH configuration to match.
