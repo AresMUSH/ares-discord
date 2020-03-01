@@ -60,7 +60,7 @@ Here are the config options:
 
 * **url**: This is your game's API endpoint.  For typical installs with https enabled it would be `https://YOUR_WEB_PORTAL/api`.
 * **bot_token**: This is the bot token that you got from "Click to Reveal Token" when you created the bot.
-* **api_token**: Make up a long password for your game.  This prevents random people from adding junk to your channels. The website [Guid Generator](https://www.guidgenerator.com/) is good for making up a password.
+* **api_token**: Make up a long password for your game.  This prevents random people from adding junk to your channels. The website [Guid Generator](https://www.guidgenerator.com/) is good for making up a password. Avoid symbols (other than `-` in your token password, as some of them can mess up the file parsing when used for the discord bot.)
 
 > **Note:** Make sure your config options are in quotes.
 
@@ -102,7 +102,7 @@ Finally you can update your game's configuration with the discord info.
 
 Here are the config options:
 
-* **`api_token`**: This must match the `api_token` option that you put in the config.json file when installing the bot.
+* **`api_token`**: This must match the `api_token` option that you put in the config.json file when installing the bot.  (Be sure to use the *api* token, not the bot token.)
 * **`webhooks`**: A list of web hooks.  For each hook, you must list the name of the MUSH channel, the name of the corresponding Discord channel, and the webhook URL from the previous step.  Remember that each channel needs a different webhook URL.
 
 Here's an example:
