@@ -10,8 +10,8 @@ const logger = winston.createLogger({
   format: winston.format.json(),
   defaultMeta: { service: 'user-service' },
   transports: [
-    new winston.transports.File({ filename: 'bot.log', level: 'info', maxsize: '10000' }),
-    new winston.transports.Console( { colorize: true })
+    new winston.transports.File({ filename: 'bot.log', level: 'info', maxsize: '10000', timestamp: true }),
+    new winston.transports.Console( { colorize: true, timestamp: true })
   ]
 });
 

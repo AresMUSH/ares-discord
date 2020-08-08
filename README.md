@@ -130,3 +130,48 @@ In `channels.yml` you can set up two additional config options:
 ### Adding or Changing Channels
 
 If you ever want to add extra channels or change how your channels are connected, you can add, edit or delete the webhooks in your Discord server settings.  Then just edit the MUSH configuration to match.
+
+## Troubleshooting
+
+If game chat is not showing up in Discord:
+
+- Make sure the webhook URL matches the one you configured in Discord.
+
+If Discord chat is not showing up in game, there are three common issues:
+
+### Bot Not Running
+
+Make sure the bot is running on your game server.
+
+Type `ps -aux | grep node` in the server shell and you should see an entry like this:
+
+    ares      1234  0.0  1.8 1089216 37520 ?       Sl   Jul24   2:40 node bot.js
+
+If the bot is not running, restart it:
+
+```
+cd ares-discord
+nohup node bot.js&
+```
+
+### Bot Not Online
+
+Make sure the Ares Link bot is visible in the "Online" list of your Discord channel.
+
+<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/botlink.png?raw=true" width="500" alt="Discord Bot" />
+
+
+If it isn't, walk through the "Add the Bot User" steps again to check that your bot is set up correctly.
+
+Also make sure your bot has the necessary Discord roles for the channels you want it to work on.
+
+### Bot Config Mismatch
+
+If the bot is running and online, double-check the settings in your bot configuration file (`config.json`) and game secrets file.  Pay particular attention to:
+
+- Making sure the API key and game URL match.
+- Making sure the channel names match exactly.
+
+### Weird Bot Errors
+
+If everything else is working, check the game log and the bot log (`ares-discord/bot##.log` - look for the highest numbered log) for any weird errors.
