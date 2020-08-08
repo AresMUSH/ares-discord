@@ -1,3 +1,4 @@
 config.json
 node_modules
-bot.log
+bot*.log
+nohup.out
