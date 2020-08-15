@@ -137,7 +137,23 @@ If game chat is not showing up in Discord:
 
 - Make sure the webhook URL matches the one you configured in Discord.
 
-If Discord chat is not showing up in game, there are three common issues:
+If Discord chat is not showing up in game, there are a few common issues:
+
+### Bot Was Working and Suddenly Stopped
+
+If your bot was working fine and suddenly stopped and nothing else changed, it could be that Discord reset your bot's token.  It does this occasionally for reasons unknown. (My suspicion is that it's just a test to see if anyone's actually using the bot for anything.)
+
+1. Go to your [Discord Developer Portal](https://discordapp.com/developers/applications) and log in with your Discord account.
+2. Select your Ares bot.
+3. Click the "Bot" tab.
+4. Click "Show Token" under your bot's username.
+5. Make sure it's the same token you have in your ares-discord/config.json file.  If not, update the config file and restart the bot.
+
+```
+cd ares-discord
+nohup node bot.js&
+```
+We've also seen Discord reset the bot's permissions randomly, so make sure it has the "Send Messages" permission checked.
 
 ### Bot Not Running
 
