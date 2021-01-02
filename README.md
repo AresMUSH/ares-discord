@@ -8,6 +8,25 @@ Chat from the game will be sent to the Discord server using a Discord Bot.  Thou
 
 In the game, chat from Discord is indicated by a prefix (`[D]` by default).
 
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Setup](#setup)
+  - [Create a Discord App](#create-a-discord-app)
+  - [Add the Bot User](#add-the-bot-user)
+  - [Install the Bot App](#install-the-bot-app)
+  - [Start the Bot App](#start-the-bot-app)
+  - [Add the Web Hooks](#add-the-web-hooks)
+  - [Edit the Game Config](#edit-the-game-config)
+  - [Additional Config Options](#additional-config-options)
+  - [Adding or Changing Channels](#adding-or-changing-channels)
+- [Troubleshooting](#troubleshooting)
+  - [Bot Was Working and Suddenly Stopped](#bot-was-working-and-suddenly-stopped)
+  - [Bot Not Running](#bot-not-running)
+  - [Bot Not Online](#bot-not-online)
+  - [Bot Config Mismatch](#bot-config-mismatch)
+  - [Weird Bot Errors](#weird-bot-errors)
+- [Upgrades](#upgrades)
+
 ## Setup
 
 Setting up the Discord app is a pain, requiring multiple steps.  Fortunately the setup only needs to be done once.
