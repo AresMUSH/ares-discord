@@ -1,15 +1,12 @@
 The Ares Discord app is an extension for AresMUSH that lets you connect your in-game chat channels to a  [Discord](https://discordapp.com/) server.
 
-<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/game.png?raw=true" width="400" alt="Game Chat" />
+## Contents
 
-<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/discord.png?raw=true" width="400" alt="Discord Chat" />
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-Chat from the game will be sent to the Discord server using a Discord Bot.  Though it will show up with the character's name (and icon, if set), you'll see `[Bot]` next to their name to show that it's not a regular Discord user. Also, because they're not a regular Discord user, you can't PM or @mention them.
-
-In the game, chat from Discord is indicated by a prefix (`[D]` by default).
-
-## Table of Contents
-
+- [How It Works](#how-it-works)
 - [Setup](#setup)
   - [Create a Discord App](#create-a-discord-app)
   - [Add the Bot User](#add-the-bot-user)
@@ -27,7 +24,19 @@ In the game, chat from Discord is indicated by a prefix (`[D]` by default).
   - [Weird Bot Errors](#weird-bot-errors)
 - [Upgrades](#upgrades)
 
-*generated with [DocToc](https://github.com/thlorenz/doctoc)*
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## How It Works
+
+<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/game.png?raw=true" width="400" alt="Game Chat" />
+
+<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/discord.png?raw=true" width="400" alt="Discord Chat" />
+
+Chat from the game will be sent to the Discord server using a Discord Bot.  Though it will show up with the character's name (and icon, if set), you'll see `[Bot]` next to their name to show that it's not a regular Discord user. Also, because they're not a regular Discord user, you can't PM or @mention them.
+
+In the game, chat from Discord is indicated by a prefix (`[D]` by default).
+
+This bot relies on the [discord.js](https://github.com/discordjs/discord.js) API library to connect to Discord.
 
 ## Setup
 
