@@ -8,7 +8,7 @@ Chat from the game will be sent to the Discord server using a Discord Bot.  Thou
 
 In the game, chat from Discord is indicated by a prefix (`[D]` by default).
 
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+## Table of Contents
 
 - [Setup](#setup)
   - [Create a Discord App](#create-a-discord-app)
@@ -26,6 +26,8 @@ In the game, chat from Discord is indicated by a prefix (`[D]` by default).
   - [Bot Config Mismatch](#bot-config-mismatch)
   - [Weird Bot Errors](#weird-bot-errors)
 - [Upgrades](#upgrades)
+
+*generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 ## Setup
 
