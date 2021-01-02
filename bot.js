@@ -35,12 +35,12 @@ bot.on('message', message => {
     if (bot.discriminator == '0000') { return; }
     if (message.author.bot === true) { return; }
 
-    var nickname = "";  
+    var nickname = null;  
     if (message.member) {
       nickname = message.member.nickname;
     }
     logger.info(`Handling message from ${message.author.username} (${nickname})`)
-
+    
     if (message.attachments.array().length > 0) {
       post = message.attachments.reduce((accumulate, attachment) => 
         `${accumulate}%r${attachment.url}`,`${post}%r- Attachments -`)
