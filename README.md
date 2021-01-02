@@ -191,3 +191,27 @@ If the bot is running and online, double-check the settings in your bot configur
 ### Weird Bot Errors
 
 If everything else is working, check the game log and the bot log (`ares-discord/bot##.log` - look for the highest numbered log) for any weird errors.
+
+
+## Upgrades
+
+If you ever need to upgrade your bot, here are the steps:
+
+To upgrade the bot, log into your server shell and run `ps -aux | grep node`. You should see a line like this with "node bot.js" at the end:
+
+
+    ares     1234  0.0  1.2 811652 25792 ?        Sl   01:01   0:02 node bot.js
+
+The number in the second column is the process id. Stop the bot by typing:
+
+    kill -9 <process ID>
+
+Then do this to upgrade the bot code:
+
+    cd ares-discord
+    git pull
+    npm install
+
+Finally, restart the bot:
+
+    nohup node bot.js&
