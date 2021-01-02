@@ -10,7 +10,13 @@ const logger = winston.createLogger({
   format: winston.format.json(),
   defaultMeta: { service: 'user-service' },
   transports: [
-    new winston.transports.File({ filename: 'bot.log', level: 'info', maxsize: '10000', timestamp: true }),
+      new winston.transports.File({ filename: 'bot.log', level: 'info', maxsize: '10000',
+				  format: winston.format.combine(
+        winston.format.colorize(),
+				      winston.format.timestamp(),
+				      winston.format.simple()
+				  ),
+				  }),
     new winston.transports.Console( { colorize: true, timestamp: true })
   ]
 });
@@ -29,7 +35,12 @@ bot.on('message', message => {
     if (bot.discriminator == '0000') { return; }
     if (message.author.bot === true) { return; }
 
-    logger.info(`Handling message from ${message.author.username}`)
+    var nickname = "";  
+    if (message.member) {
+      nickname = message.member.nickname;
+    }
+    logger.info(`Handling message from ${message.author.username} (${nickname})`)
+
     if (message.attachments.array().length > 0) {
       post = message.attachments.reduce((accumulate, attachment) => 
         `${accumulate}%r${attachment.url}`,`${post}%r- Attachments -`)
@@ -37,10 +48,6 @@ bot.on('message', message => {
     else {
       post = message.cleanContent;
     }   
-    var nickname = "";  
-    if (message.member) {
-      nickname = message.member.nickname;
-    }
     axios.post(config.url + '/webhook', {
     		
           cmd: 'discord',
@@ -55,5 +62,11 @@ bot.on('message', message => {
         logger.info(error);
       });
 });
-
+bot.on('error', function (err) {
+    logger.error('Unexpected error: ' + err);
+});
+bot.on('uncaughtException', function (err) {
+    logger.error('Caught exception: ' + err);
+    throw err;
+});
 bot.login(config.bot_token);
