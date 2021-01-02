@@ -6,7 +6,7 @@
   "author": "Faraday@AresMUSH",
   "dependencies": {
     "axios": "^0.19.2",
-    "discord.js": "^12.4.0",
+    "discord.js": "^12.5.0",
     "winston": "^3.2.1"
   }
 }
