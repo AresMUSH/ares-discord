@@ -39,7 +39,7 @@ bot.on('message', message => {
     if (message.member) {
       nickname = message.member.nickname;
     }
-    logger.info(`Handling message from ${message.author.username} (${nickname})`)
+    logger.info(`Handling message on ${message.channel.name} from ${message.author.username} (${nickname})`);
     
     if (message.attachments.array().length > 0) {
       post = message.attachments.reduce((accumulate, attachment) => 
