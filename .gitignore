@@ -2,3 +2,4 @@ config.json
 node_modules
 bot*.log
 nohup.out
+.DS_Store

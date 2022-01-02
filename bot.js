@@ -10,7 +10,7 @@ const logger = winston.createLogger({
   format: winston.format.json(),
   defaultMeta: { service: 'user-service' },
   transports: [
-      new winston.transports.File({ filename: 'bot.log', level: 'info', maxsize: '10000',
+      new winston.transports.File({ filename: 'bot.log', level: 'info', maxsize: '10000',  maxFiles: '7d',
 				  format: winston.format.combine(
         winston.format.colorize(),
 				      winston.format.timestamp(),
@@ -29,7 +29,8 @@ bot.on('ready', function (evt) {
     logger.info('Logged in as: ' + bot.user.tag);
 });
 bot.on('message', message => {
- 
+  try {
+    
     // don't respond to ourselves, to web hooks, or to bots
     if (message.author == bot.user) { return; }
     if (bot.discriminator == '0000') { return; }
@@ -61,6 +62,9 @@ bot.on('message', message => {
       .catch(function (error) {
         logger.info(error);
       });
+    } catch (error) {
+      logger.error('Unexpected error: ' + error);
+    }
 });
 bot.on('error', function (err) {
     logger.error('Unexpected error: ' + err);
