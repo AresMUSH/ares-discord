@@ -1,4 +1,5 @@
-var Discord = require('discord.js');
+const { Client, Intents } = require('discord.js');
+
 var winston = require('winston');
 var config = require('./config.json');
 var axios = require('axios')
@@ -22,14 +23,15 @@ const logger = winston.createLogger({
 });
 
 // Initialize Discord Bot
-var bot = new Discord.Client();
+var bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+
 
 bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ' + bot.user.tag);
 });
 bot.on('message', message => {
- 
+    try { 
     // don't respond to ourselves, to web hooks, or to bots
     if (message.author == bot.user) { return; }
     if (bot.discriminator == '0000') { return; }
@@ -39,9 +41,11 @@ bot.on('message', message => {
     if (message.member) {
       nickname = message.member.nickname;
     }
-    logger.info(`Handling message from ${message.author.username} (${nickname})`)
-    
-    if (message.attachments.array().length > 0) {
+    logger.info(`Handling message on ${message.channel.name} from ${message.author.username} (${nickname})`);
+
+	message.attachments.array();
+	
+    if (message.attachments && message.attachments.length > 0) {
       post = message.attachments.reduce((accumulate, attachment) => 
         `${accumulate}%r${attachment.url}`,`${post}%r- Attachments -`)
     }  
@@ -61,6 +65,10 @@ bot.on('message', message => {
       .catch(function (error) {
         logger.info(error);
       });
+    } catch (error) {
+	logger.error('Unexpected error: ' + error);
+    }
+    
 });
 bot.on('error', function (err) {
     logger.error('Unexpected error: ' + err);
