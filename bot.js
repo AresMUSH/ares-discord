@@ -10,7 +10,7 @@ const logger = winston.createLogger({
   format: winston.format.json(),
   defaultMeta: { service: 'user-service' },
   transports: [
-      new winston.transports.File({ filename: 'bot.log', level: 'info', maxsize: '10000',  maxFiles: '7d',
+      new winston.transports.File({ filename: 'bot.log', level: 'info', maxsize: '10000',  maxFiles: '5',
 				  format: winston.format.combine(
         winston.format.colorize(),
 				      winston.format.timestamp(),
@@ -42,6 +42,7 @@ bot.on('message', message => {
     }
     logger.info(`Handling message on ${message.channel.name} from ${message.author.username} (${nickname})`);
     
+    post = "";
     if (message.attachments.array().length > 0) {
       post = message.attachments.reduce((accumulate, attachment) => 
         `${accumulate}%r${attachment.url}`,`${post}%r- Attachments -`)
