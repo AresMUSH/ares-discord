@@ -6,7 +6,11 @@ The Ares Discord app is an extension for AresMUSH that lets you connect your in-
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+- [What It Does](#what-it-does)
 - [How It Works](#how-it-works)
+  - [Game to Discord](#game-to-discord)
+  - [Discord to Game](#discord-to-game)
+- [Limitations](#limitations)
 - [Setup](#setup)
   - [Create a Discord App](#create-a-discord-app)
   - [Add the Bot User](#add-the-bot-user)
@@ -23,6 +27,7 @@ The Ares Discord app is an extension for AresMUSH that lets you connect your in-
   - [Bot Config Mismatch](#bot-config-mismatch)
   - [Weird Bot Errors](#weird-bot-errors)
 - [Upgrades](#upgrades)
+- [Pre-v0.108 Channel Configuration](#pre-v0108-channel-configuration)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
