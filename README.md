@@ -26,21 +26,51 @@ The Ares Discord app is an extension for AresMUSH that lets you connect your in-
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## How It Works
+## What It Does
 
 <img src="https://github.com/AresMUSH/ares-discord/blob/master/images/game.png?raw=true" width="400" alt="Game Chat" />
 
 <img src="https://github.com/AresMUSH/ares-discord/blob/master/images/discord.png?raw=true" width="400" alt="Discord Chat" />
 
-Chat from the game will be sent to the Discord server using a Discord Bot.  Though it will show up with the character's name (and icon, if set), you'll see `[Bot]` next to their name to show that it's not a regular Discord user. Also, because they're not a regular Discord user, you can't PM or @mention them.
+In the game, chat from Discord is indicated by a prefix (`[D]` by default, which you can configure).
 
-In the game, chat from Discord is indicated by a prefix (`[D]` by default).
+In Discord, chat from the game will show up with a little `[Bot]` tag next to it.
 
-This bot relies on the [discord.js](https://github.com/discordjs/discord.js) API library to connect to Discord.
+## How It Works
+
+There are two completely independent paths for traffic, **Game to Discord** and **Discord to Game**. Understanding how they differ will aid you in understanding the setup, and also in troubleshooting any issues.
+
+### Game to Discord
+
+Discord allows external apps to post to channels using a **webhook**, a special URL that you can send data to. You can set up one discord webhook for each channel you want to link with the game. Whenever someone talks on an in-game channel, Ares will see if you've configured a discord webhook for that channel. If so, the game will post a message to the webhook, and the message will appear in the associated discord channel.
+
+**Note:** There is no additional security on this path. Anyone with the webhook URL can post to your discord, so treat your webhook URLs like you would a key or password.
+
+![image](https://user-images.githubusercontent.com/366524/183311251-06a04bf6-4671-454f-b130-159bc183a49c.png)
+
+### Discord to Game
+
+You can't use Discord webhooks for outgoing traffic. The only way to get chat from discord to the game is to use a Discord Bot. 
+
+The Bot has two sides. The first is a **Bot User**, which you set up in your Discord account. This sits in your Discord server just like another user--you'll even see it on the user list like it's online. It listens for chat messages.
+
+The second side of the Bot is the **Bot Script**. This runs on your game server, and is basically the brains of the bot. Whenever the Bot User sees a chat message, the Bot Script relays that to your game using an internal webhook URL.
+
+![image](https://user-images.githubusercontent.com/366524/183311643-1c62ea8b-43af-4b44-970f-5be2d1993bb0.png)
+
+## Limitations
+
+Before installing the Discord integration, you should understand its limitations.
+
+The bot relies on the [discord.js](https://github.com/discordjs/discord.js) library to talk to the Discord API. Additionally, the Discord API itself may change at any time. Any changes or problems with either the Discord API or discord.js library may break the integration, and are largely out of our control.
+
+Bottom line...
+
+> There are no guarantees of stability with the Discord integration.
 
 ## Setup
 
-Setting up the Discord app is a pain, requiring multiple steps.  Fortunately the setup only needs to be done once.
+Setting up the Discord app is unfortunately an involved process, requiring multiple steps.  Fortunately the setup only needs to be done once.
 
 ### Create a Discord App
 
@@ -120,6 +150,7 @@ You'll need to set up a web hook in your Discord server for **each** MUSH channe
 
 <img src="https://github.com/AresMUSH/ares-discord/blob/master/images/webhook.png?raw=true" width="500" alt="Discord Chat" />
 
+> **NOTE:** These webhooks will allow anyone to post to your discord server. Treat them like you would an API key or password.
 
 ### Edit the Game Config
 
@@ -133,33 +164,31 @@ Finally you can update your game's configuration with the discord info.
 Here are the config options:
 
 * **`api_token`**: This must match the `api_token` option that you put in the config.json file when installing the bot.  (Be sure to use the *api* token, not the bot token.)
-* **`webhooks`**: A list of web hooks.  For each hook, you must list the name of the MUSH channel, the name of the corresponding Discord channel, and the webhook URL from the previous step.  Remember that each channel needs a different webhook URL.
-
-Here's an example:
 
 ```
+secrets:
+  discord:
     api_token: '123'
-    webhooks:
-      - 
-        mush_channel: chat
-        discord_channel: lobby
-        webhook_url: 'https://discordapp.com/api/webhooks/WEBHOOK1'
-      -
-        mush_channel: sports
-        discord_channel: sports
-        webhook_url: 'https://discordapp.com/api/webhooks/WEBHOOK2'
-
 ```
+
 ### Additional Config Options
 
 In `channels.yml` you can set up two additional config options:
 
 * **`discord_prefix`** - This is the prefix that shows up on the in-game chat to indicate that the message came from Discord.
 * **`discord_gravatar_style`** - If the player doesn't have an icon, the game will use a randomly-assigned one from Gravatar.  Gravatar supports [various styles](https://en.gravatar.com/site/implement/images/) such as 'robohash' (robots), 'retro' (blocky video game things),  'identicon' (geometric patterns) and more.
+* **`discord_debug`** - Enables additional debugging to troubleshoot Discord issues.
 
 ### Adding or Changing Channels
 
-If you ever want to add extra channels or change how your channels are connected, you can add, edit or delete the webhooks in your Discord server settings.  Then just edit the MUSH configuration to match.
+You can add and edit the game channel configuration in the Web Portal under Admin -> Setup -> Setup Channels. Pick the channel you wish to manage, and edit the following settings:
+
+** `Discord Channel` - The name of the Discord channel you want this to link to. This must match exactly the name in Discord.
+** `Discord Webhook URL` - The secret webhook URL associated with the Discord channel.
+
+<img width="725" alt="image" src="https://user-images.githubusercontent.com/366524/183312075-6c9e735c-96e5-45d2-b220-4dedce575515.png">
+
+Note: In versions before v0.108, channel configuration was done in secrets.yml. See Pre-v0.018 Configuration below for details.
 
 ## Troubleshooting
 
@@ -171,7 +200,7 @@ If Discord chat is not showing up in game, there are a few common issues:
 
 ### Bot Was Working and Suddenly Stopped
 
-If your bot was working fine and suddenly stopped and nothing else changed, it could be that Discord reset your bot's token.  It does this occasionally for reasons unknown. (My suspicion is that it's just a test to see if anyone's actually using the bot for anything.)
+If your bot was working fine and suddenly stopped and nothing else changed, it could be that Discord reset your bot's token.  It does this occasionally for reasons unknown.
 
 1. Go to your [Discord Developer Portal](https://discordapp.com/developers/applications) and log in with your Discord account.
 2. Select your Ares bot.
@@ -179,11 +208,7 @@ If your bot was working fine and suddenly stopped and nothing else changed, it c
 4. Click "Show Token" under your bot's username.
 5. Make sure it's the same token you have in your ares-discord/config.json file.  If not, update the config file and restart the bot.
 
-```
-cd ares-discord
-nohup node bot.js&
-```
-We've also seen Discord reset the bot's permissions randomly, so make sure it has the "Send Messages" permission checked.
+We've also seen Discord reset the bot's permissions occasionally, so make sure it has the "Send Messages" permission checked.
 
 ### Bot Not Running
 
@@ -206,14 +231,13 @@ Make sure the Ares Link bot is visible in the "Online" list of your Discord chan
 
 <img src="https://github.com/AresMUSH/ares-discord/blob/master/images/botlink.png?raw=true" width="500" alt="Discord Bot" />
 
-
 If it isn't, walk through the "Add the Bot User" steps again to check that your bot is set up correctly.
 
 Also make sure your bot has the necessary Discord roles for the channels you want it to work on.
 
 ### Bot Config Mismatch
 
-If the bot is running and online, double-check the settings in your bot configuration file (`config.json`) and game secrets file.  Pay particular attention to:
+If the bot is running and online, double-check the settings in your bot configuration file (`config.json`) and game configuration.  Pay particular attention to:
 
 - Making sure the API key and game URL match.
 - Making sure the channel names match exactly.
@@ -222,13 +246,11 @@ If the bot is running and online, double-check the settings in your bot configur
 
 If everything else is working, check the game log and the bot log (`ares-discord/bot##.log` - look for the highest numbered log) for any weird errors.
 
-
 ## Upgrades
 
 If you ever need to upgrade your bot, here are the steps:
 
 To upgrade the bot, log into your server shell and run `ps -aux | grep node`. You should see a line like this with "node bot.js" at the end:
-
 
     ares     1234  0.0  1.2 811652 25792 ?        Sl   01:01   0:02 node bot.js
 
@@ -245,3 +267,27 @@ Then do this to upgrade the bot code:
 Finally, restart the bot:
 
     nohup node bot.js&
+    
+## Pre-v0.108 Channel Configuration
+    
+In versions before v0.108, channel configuration was done in secrets.yml under secrets / discord / webhooks.
+
+For each hook, you must list the name of the MUSH channel, the name of the corresponding Discord channel, and the webhook URL from the previous step.  Remember that each channel needs a different webhook URL.
+
+Here's an example:
+
+```
+secrets:
+  discord:
+    api_token: '123'
+    webhooks:
+      - 
+        mush_channel: chat
+        discord_channel: lobby
+        webhook_url: 'https://discordapp.com/api/webhooks/WEBHOOK1'
+      -
+        mush_channel: sports
+        discord_channel: sports
+        webhook_url: 'https://discordapp.com/api/webhooks/WEBHOOK2'
+
+```
