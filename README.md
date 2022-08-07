@@ -181,7 +181,7 @@ secrets:
 In `channels.yml` you can set up two additional config options:
 
 * **`discord_prefix`** - This is the prefix that shows up on the in-game chat to indicate that the message came from Discord.
-* **`discord_gravatar_style`** - If the player doesn't have an icon, the game will use a randomly-assigned one from Gravatar.  Gravatar supports [various styles](https://en.gravatar.com/site/implement/images/) such as 'robohash' (robots), 'retro' (blocky video game things),  'identicon' (geometric patterns) and more.
+* **`discord_gravatar_style`** - If the player doesn't have an icon, Discord will use a randomly-assigned one from Gravatar.  Gravatar supports [various styles](https://en.gravatar.com/site/implement/images/) such as 'robohash' (robots), 'retro' (blocky video game things),  'identicon' (geometric patterns) and more.
 * **`discord_debug`** - Enables additional debugging to troubleshoot Discord issues.
 
 ### Adding or Changing Channels
