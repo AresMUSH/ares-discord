@@ -1,4 +1,4 @@
-The Ares Discord app is an extension for AresMUSH that lets you connect your in-game chat channels to a  [Discord](https://discordapp.com/) server.
+The Ares Discord app is an extension for [AresMUSH](https://aresmush.com) that lets you connect your in-game chat channels to a  [Discord](https://discordapp.com/) server.
 
 ## Contents
 
@@ -296,3 +296,7 @@ secrets:
         webhook_url: 'https://discordapp.com/api/webhooks/WEBHOOK2'
 
 ```
+
+## License
+
+See [License](https://aresmush.com/license.html)
