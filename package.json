@@ -5,7 +5,7 @@
   "main": "bot.js",
   "author": "Faraday@AresMUSH",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "discord.js": "^14.3.0",
     "winston": "^3.2.1"
   }
