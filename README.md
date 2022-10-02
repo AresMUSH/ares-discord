@@ -138,7 +138,7 @@ Once the bot code is installed, you need to start it up.
 
 ```
 cd ares-discord
-nohup node bot.js&
+./restart.sh
 ```
 
 You only need to do this the first time.  The installer sets it up so it'll start automatically when the server restarts.
@@ -219,7 +219,7 @@ We've also seen Discord reset the bot's permissions occasionally, so make sure i
 
 Make sure the bot is running on your game server.
 
-Type `ps -aux | grep node` in the server shell and you should see an entry like this:
+Type `ps -aux | grep bot.js` in the server shell and you should see an entry like this:
 
     ares      1234  0.0  1.8 1089216 37520 ?       Sl   Jul24   2:40 node bot.js
 
@@ -227,7 +227,7 @@ If the bot is not running, restart it:
 
 ```
 cd ares-discord
-nohup node bot.js&
+./restart.sh
 ```
 
 ### Bot Not Online
@@ -255,7 +255,7 @@ If everything else is working, check the game log and the bot log (`ares-discord
 
 If you ever need to upgrade your bot, here are the steps:
 
-To upgrade the bot, log into your server shell and run `ps -aux | grep node`. You should see a line like this with "node bot.js" at the end:
+To upgrade the bot, log into your server shell and run `ps -aux | grep bot.js`. You should see a line like this with "node bot.js" at the end:
 
     ares     1234  0.0  1.2 811652 25792 ?        Sl   01:01   0:02 node bot.js
 
@@ -267,11 +267,7 @@ Then do this to upgrade the bot code:
 
     cd ares-discord
     git pull
-    npm install
-
-Finally, restart the bot:
-
-    nohup node bot.js&
+    ./restart.sh
     
 ## Pre-v0.108 Channel Configuration
     
