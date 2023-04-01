@@ -188,8 +188,8 @@ In `channels.yml` you can set up two additional config options:
 
 You can add and edit the game channel configuration in the Web Portal under Admin -> Setup -> Setup Channels. Pick the channel you wish to manage, and edit the following settings:
 
-** `Discord Channel` - The name of the Discord channel you want this to link to. This must match exactly the name in Discord.
-** `Discord Webhook URL` - The secret webhook URL associated with the Discord channel.
+* `Discord Channel` - The name of the Discord channel you want this to link to. This must match exactly the name in Discord.
+* `Discord Webhook URL` - The secret webhook URL associated with the Discord channel.
 
 <img width="725" alt="image" src="https://user-images.githubusercontent.com/366524/183312075-6c9e735c-96e5-45d2-b220-4dedce575515.png">
 
