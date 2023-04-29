@@ -164,17 +164,8 @@ Finally you can update your game's configuration with the discord info.
 1. Log into your web portal with an admin character.
 2. Go to Admin -> Setup.
 3. Edit `secrets.yml`.
-4. Add or edit a config option named 'discord'.
-
-Here are the config options:
-
-* **`api_token`**: This must match the `api_token` option that you put in the config.json file when installing the bot.  (Be sure to use the *api* token, not the bot token.)
-
-```
-secrets:
-  discord:
-    api_token: '123'
-```
+4. Look for a config option named 'discord'. If it doesn't exist, use the 'add key' option to create it.
+5. Set the discord config to: `api_token: 'YOUR_API_TOKEN'` This must exactly match the `api_token` option that you put in the config.json file when installing the bot.  (Be sure to use the *api* token, not the bot token.)
 
 ### Additional Config Options
 
