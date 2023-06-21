@@ -89,8 +89,8 @@ First you need to create an "application" in discord that will enable your bot.
 6. Give your bot a username and optionally an icon.
 7. Activate the slider for the "Message Content Intent" so your bot can receive raw message data.
 8. Under the bot's username is a thing that says "Click to Reveal Token."  Click that and save the token somewhere safe.  You'll need it in a minute.
-9. Select the "General Information" menu.
-10. Copy the "Client ID" under the app name.  You'll need that in a minute too.
+9. Select the "OAuth2" menu.
+10. Copy the "Client ID".  You'll need that in a minute too.
 
 > **NOTE:** Never give your bot token to anyone, as it will allow them to control your bot in potentially malicious ways.
 
