@@ -1,7 +1,7 @@
-var Discord = require('discord.js');
-var winston = require('winston');
-var config = require('./config.json');
-var axios = require('axios')
+const { Client, GatewayIntentBits } = require('discord.js');
+const winston = require('winston');
+const config = require('./config.json');
+const axios = require('axios')
 
 // Configure logger settings
 
@@ -22,13 +22,16 @@ const logger = winston.createLogger({
 });
 
 // Initialize Discord Bot
-var bot = new Discord.Client();
+var bot = new Client( { intents: [
+  GatewayIntentBits.Guilds,
+  GatewayIntentBits.GuildMessages,
+  GatewayIntentBits.MessageContent ] } );
 
 bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ' + bot.user.tag);
 });
-bot.on('message', message => {
+bot.on('messageCreate', message => {
   try {
     
     // don't respond to ourselves, to web hooks, or to bots
@@ -42,8 +45,8 @@ bot.on('message', message => {
     }
     logger.info(`Handling message on ${message.channel.name} from ${message.author.username} (${nickname})`);
     
-    post = "";
-    if (message.attachments.array().length > 0) {
+    post = message.cleanContent;
+    if ((message.attachments || []).size > 0) {
       post = message.attachments.reduce((accumulate, attachment) => 
         `${accumulate}%r${attachment.url}`,`${post}%r- Attachments -`)
     }  

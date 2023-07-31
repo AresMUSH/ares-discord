@@ -1,7 +1,9 @@
 echo "Are you sure the discord bot is not already running?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes )  npm ci
+        Yes )  
+      echo "Starting bot."
+      npm ci
 	    rm nohup.out
 	    nohup node bot.js&
 	    echo "Bot started."
