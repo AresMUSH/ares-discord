@@ -204,7 +204,7 @@ Make sure the Ares Link bot user is visible in the "Online" list of your Discord
 
 <img src="https://github.com/AresMUSH/ares-discord/blob/master/images/botlink.png?raw=true" width="500" alt="Discord Bot" />
 
-If it IS, skip to [Check Bot Config](#check-bot-config).
+If it IS, skip to Check Bot Config, below.
 
 Otherwise, keep reading.
 
