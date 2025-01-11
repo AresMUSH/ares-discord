@@ -21,11 +21,9 @@ The Ares Discord app is an extension for [AresMUSH](https://aresmush.com) that l
   - [Additional Config Options](#additional-config-options)
   - [Adding or Changing Channels](#adding-or-changing-channels)
 - [Troubleshooting](#troubleshooting)
+  - [Game Chat Not Showing Up In Discord](#game-chat-not-showing-up-in-discord)
+  - [Discord Can't Talk to Game](#discord-cant-talk-to-game)
   - [Bot Was Working and Suddenly Stopped](#bot-was-working-and-suddenly-stopped)
-  - [Bot Not Running](#bot-not-running)
-  - [Bot Not Online](#bot-not-online)
-  - [Bot Config Mismatch](#bot-config-mismatch)
-  - [Weird Bot Errors](#weird-bot-errors)
 - [Upgrades](#upgrades)
 - [Pre-v0.108 Channel Configuration](#pre-v0108-channel-configuration)
 
@@ -188,25 +186,29 @@ Note: In versions before v0.108, channel configuration was done in secrets.yml. 
 
 ## Troubleshooting
 
+## Game Chat Not Showing Up In Discord
+
 If game chat is not showing up in Discord:
 
-- Make sure the webhook URL matches the one you configured in Discord.
+- Make sure the webhook URL in your channel setup matches the one you configured in Discord.
+- Check your game log for errors.
+- Enable `discord_debug` in `channels.yml` and try again. There may be additional info in the game log.
 
-If Discord chat is not showing up in game, there are a few common issues:
+## Discord Can't Talk to Game
 
-### Bot Was Working and Suddenly Stopped
+If Discord can't talk to the game:
 
-If your bot was working fine and suddenly stopped and nothing else changed, it could be that Discord reset your bot's token.  It does this occasionally for reasons unknown.
+**Check That Bot Is Online**
 
-1. Go to your [Discord Developer Portal](https://discordapp.com/developers/applications) and log in with your Discord account.
-2. Select your Ares bot.
-3. Click the "Bot" tab.
-4. Click "Show Token" under your bot's username.
-5. Make sure it's the same token you have in your ares-discord/config.json file.  If not, update the config file and restart the bot.
+Make sure the Ares Link bot user is visible in the "Online" list of your Discord channel.
 
-We've also seen Discord reset the bot's permissions occasionally, so make sure it has the "Send Messages" permission checked.
+<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/botlink.png?raw=true" width="500" alt="Discord Bot" />
 
-### Bot Not Running
+If it IS, skip to [Check Bot Config](#check-bot-config).
+
+Otherwise, keep reading.
+
+**Check That Bot Is Runnning**
 
 Make sure the bot is running on your game server.
 
@@ -221,26 +223,33 @@ cd ares-discord
 ./restart.sh
 ```
 
-### Bot Not Online
+If the bot user is still not showing up in Discord, go through the "Add the Bot User" steps again to check that your bot is set up correctly. 
 
-Make sure the Ares Link bot is visible in the "Online" list of your Discord channel.
+In particular, check if your bot has the necessary Discord roles for the channels you want it to work on.
 
-<img src="https://github.com/AresMUSH/ares-discord/blob/master/images/botlink.png?raw=true" width="500" alt="Discord Bot" />
+**Check Bot Config**
 
-If it isn't, walk through the "Add the Bot User" steps again to check that your bot is set up correctly.
-
-Also make sure your bot has the necessary Discord roles for the channels you want it to work on.
-
-### Bot Config Mismatch
-
-If the bot is running and online, double-check the settings in your bot configuration file (`config.json`) and game configuration.  Pay particular attention to:
+If the bot user shows up in Discord but isn't talking, double-check the settings in your bot configuration file (`config.json`) and your game configuration.  Pay particular attention to:
 
 - Making sure the API key and game URL match.
 - Making sure the channel names match exactly.
 
-### Weird Bot Errors
+## Weird Bot Errors
 
 If everything else is working, check the game log and the bot log (`ares-discord/bot##.log` - look for the highest numbered log) for any weird errors.
+
+## Bot Was Working and Suddenly Stopped
+
+If Discord -> Game was working fine and suddenly stopped and nothing else changed, it could be that Discord reset your bot's token.  It does this occasionally for reasons unknown.
+
+1. Go to your [Discord Developer Portal](https://discordapp.com/developers/applications) and log in with your Discord account.
+2. Select your Ares bot.
+3. Click the "Bot" tab.
+4. Click "Show Token" under your bot's username.
+5. Make sure it's the same token you have in your ares-discord/config.json file.  If not, update the config file and restart the bot.
+
+We've also seen Discord reset the bot's permissions occasionally, so make sure it has the "Send Messages" permission checked.
+
 
 ## Upgrades
 
